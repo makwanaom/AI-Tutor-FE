@@ -1,0 +1,25 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  name String?
+  convos Convo[]
+}
+
+model Convo {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  prompt String
+  response String
+  user User? @relation(fields: [userId], references: [id])
+  userId String?
+}
+
+
