@@ -1,4 +1,5 @@
 import { useState } from "react";
+// import { useNavigate } from 'react-router-dom';
 import Layer0Card from "../../components/layer0Card/Layer0Card";
 
 const Layer0 = () => {
@@ -6,10 +7,21 @@ const Layer0 = () => {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  // const navigate = useNavigate();
 
   const handlePromptChange = (event) => {
     setPrompt(event.target.value);
   };
+
+  // //handle click of layerCard
+  // const navigateToLayer1 = (data) => {
+  //   console.log("layer1");
+  //   navigate('http://localhost:3000/layer1', { state: data }); 
+  // };
+
+  // const handleClick = (levelName, levelContent, subject) => {
+  //   navigateToLayer1({ levelName, levelContent, subject }); 
+  // };
 
   const getLayer0Result = async () => {
     // e.preventDefault();
@@ -62,10 +74,13 @@ const Layer0 = () => {
         <div>
           {Array.isArray(result) ? ( // Check if result is an array
             result.map((level, index) => (
+
+              //card for LAYER
               <Layer0Card
                 index={index}
                 levelName={level.levelName}
                 levelContent={level.levelContent}
+                subject={level.subject}
                 key={index}
               />
             ))
