@@ -1,5 +1,5 @@
-import Home from './page/home/Home'
-import Layer0 from './page/layer0/layer0'
+import Home from "./page/home/Home";
+import Layer0 from "./page/layer0/layer0";
 
 const App = () => {
   return (
@@ -7,7 +7,9 @@ const App = () => {
       <Home />
       <Layer0 />
     </div>
-  )
-}
+  );
+};
 
-export default App
+
+
+export default App;
