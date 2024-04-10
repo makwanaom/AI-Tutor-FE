@@ -1,0 +1,11 @@
+.layer2-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .layer2-card h3 {
+    margin-top: 0;
+  }

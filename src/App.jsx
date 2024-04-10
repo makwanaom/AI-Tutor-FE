@@ -9,6 +9,7 @@ import Layer2 from "./page/layer2/layer2"; // Import the Layer1 component
 import { ThemeContextProvider } from "./context/ThemeContext";
 import ThemeProvider from "./providers/ThemeProvider";
 import "./App.css";
+import Layer3 from "./page/layer3/Layer3";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
               {/* Add route for Layer1 */}
               <Route path="/layer2" element={<Layer2 />} />{" "}
               {/* Add route for Layer1 */}
+              <Route path="/layer3" element={<Layer3 />} />{" "}
             </Routes>
           </div>
         </ThemeProvider>

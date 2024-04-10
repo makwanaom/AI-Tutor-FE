@@ -61,7 +61,7 @@ const Layer1 = () => {
       <ul>
       <div className="chapter-list">
         {data.chapters.map((chapter, index) => (
-          <Layer1Card key={index} index={index} chapter={chapter} />
+          <Layer1Card key={index} index={index} chapter={chapter} level={data.level} subject={data.subject}/>
         ))}
       </div>
       </ul>
