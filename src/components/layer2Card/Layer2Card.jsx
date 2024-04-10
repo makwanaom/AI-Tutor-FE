@@ -6,7 +6,7 @@ const Layer2Card = ({ lessonName, lessonContent, chapter, level, subject }) => {
   const navigateToLayer3 = (data) => {
     navigate("/layer3", { state: data });
   };
-  const handleClick = (chapter, level, subject) => {
+  const handleClick = (lessonName, lessonContent,chapter, level, subject) => {
     // Handle click event
     navigateToLayer3({ lessonName, lessonContent, chapter, level, subject });
     console.log("Clicked on lessonName:", lessonName);
