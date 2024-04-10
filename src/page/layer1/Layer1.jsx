@@ -1,71 +1,70 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'; // Assuming you're using React Router
+
+import { useLocation } from 'react-router-dom';
+
+import { useEffect, useState } from 'react';
+import Layer1Card from '../../components/layer1Card/Layer1Card';
 
 const Layer1 = () => {
   const location = useLocation();
-  const { levelName, levelContent, subject } = location.state || {}; // Get data or default to empty object
-  const [chapters, setChapters] = useState([]);
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      setError(null);
-
       try {
-        const data = {
-          prompt: {
-            levelName,
-            levelContent,
-            subject,
-          },
-        };
-
-        const response = await fetch('http://localhost:3000/layer1', {
-          method: 'POST',
+        const response = await fetch("http://localhost:3000/layer1", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify({
+            prompt: {
+              levelName: location.state.levelName,
+              levelContent: location.state.levelContent,
+              subject: location.state.subject
+            }
+          }),
         });
 
         if (!response.ok) {
-          throw new Error('Failed to fetch chapters.');
+          throw new Error("Failed to get result from backend.");
         }
 
-        const result = await response.json();
-        setChapters(result.chapters);
+        const resultData = await response.json();
+        setData(resultData);
+        setError(null);
       } catch (error) {
-        console.error('Error fetching chapters:', error);
-        setError('Failed to fetch chapters.');
+        console.error("Error:", error.message);
+        setError("Failed to fetch result from backend.");
+        setData(null);
       } finally {
-        setLoading(false);
+        setLoading(false); // Update loading state regardless of success or failure
       }
     };
 
-    if (levelName && levelContent && subject) {
-      fetchData();
-    }
-  }, [levelName, levelContent, subject]); // Run effect when these values change
+    fetchData();
+  }, [location]);
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!data) return null;
 
   return (
     <div>
-      <h1>Layer 1: {levelName}</h1>
-      <h2>Subject: {subject}</h2>
-
-      {loading && <p>Loading chapters...</p>}
-      {error && <p>{error}</p>}
-
-      {chapters.length > 0 ? (
-        <ul>
-          {chapters.map((chapter, index) => (
-            <li key={index}>{chapter}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No chapters found.</p>
-      )}
+      <h1>level 1 data</h1>
+      <p><strong>Level Name:</strong> {data.level}</p>
+      <p><strong>Level Content:</strong> {data.levelContent}</p>
+      <p><strong>Subject:</strong> {data.subject}</p>
+      <h2>Chapters:</h2>
+      <ul>
+      <div className="chapter-list">
+        {data.chapters.map((chapter, index) => (
+          <Layer1Card key={index} index={index} chapter={chapter} />
+        ))}
+      </div>
+      </ul>
     </div>
   );
 };
