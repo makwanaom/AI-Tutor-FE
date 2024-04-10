@@ -12,7 +12,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
   };
 
   return (
-    <Link to="/layer1">
+    
       <div
         key={index}
         className="layer0-card"
@@ -20,7 +20,7 @@ const Layer0Card = ({ index, levelName, levelContent, subject }) => {
       >
         <strong>{levelName}</strong>: {levelContent}
       </div>
-    </Link>
+   
   );
 };
 

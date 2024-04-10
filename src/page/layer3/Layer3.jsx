@@ -1,10 +1,6 @@
-
-import { useLocation } from 'react-router-dom';
-
-import { useEffect, useState } from 'react';
-import Layer1Card from '../../components/layer1Card/Layer1Card';
-
-const Layer1 = () => {
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+const Layer3 = () => {
   const location = useLocation();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -14,15 +10,17 @@ const Layer1 = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:3000/layer1", {
+        const response = await fetch("http://localhost:3000/layer3", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
             prompt: {
-              levelName: location.state.levelName,
-              levelContent: location.state.levelContent,
+              lessonName: location.state.lessonName,
+              lessonContent: location.state.lessonContent,
+              chapter: location.state.chapter,
+              levelName: location.state.level,
               subject: location.state.subject
             }
           }),
@@ -33,14 +31,14 @@ const Layer1 = () => {
         }
 
         const resultData = await response.json();
-        setData(resultData);
+        setData(resultData.result);
         setError(null);
       } catch (error) {
         console.error("Error:", error.message);
         setError("Failed to fetch result from backend.");
         setData(null);
       } finally {
-        setLoading(false); // Update loading state regardless of success or failure
+        setLoading(false);
       }
     };
 
@@ -53,20 +51,11 @@ const Layer1 = () => {
 
   return (
     <div>
-      <h1>level 1 data</h1>
-      <p><strong>Level Name:</strong> {data.level}</p>
-      <p><strong>Level Content:</strong> {data.levelContent}</p>
-      <p><strong>Subject:</strong> {data.subject}</p>
-      <h2>Chapters:</h2>
-      <ul>
-      <div className="chapter-list">
-        {data.chapters.map((chapter, index) => (
-          <Layer1Card key={index} index={index} chapter={chapter} level={data.level} subject={data.subject}/>
-        ))}
-      </div>
-      </ul>
+      <h1>Level 3 Data</h1>
+      <h2>{location.state.lessonName}</h2>
+      <div>{data}</div>
     </div>
   );
 };
 
-export default Layer1;
+export default Layer3;

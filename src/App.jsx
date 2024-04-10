@@ -12,6 +12,7 @@ import { Register } from "./components/auth/Register";  //import the register co
 import { ThemeContextProvider } from "./context/ThemeContext";
 import ThemeProvider from "./providers/ThemeProvider";
 import "./App.css";
+import Layer3 from "./page/layer3/Layer3";
 
 const App = () => {
   return (
@@ -26,15 +27,14 @@ const App = () => {
               <Route path="/layer1" element={<Layer1 />} />{" "}
               {/* Add route for Layer1 */}
               <Route path="/layer2" element={<Layer2 />} />{" "}
-              {/* Add route for Layer1 */}
-              <Route path="/layer3" element={<Layer2 />} />{" "}
 
-              {/* Add route for Login */}             
-              <Route path="/login" element={<Login />} />{" "}
+             {/* add routh for login  */}
 
-              {/* Add route for Register */}
-              <Route path="/register" element={<Register />} />{" "}
-              
+            <Route path="/login" element={<Login />} />{" "}
+
+            {/* add routh for signup */}
+            <Route path="/register" element={<Register />} />{" "}
+
             </Routes>
           </div>
         </ThemeProvider>
