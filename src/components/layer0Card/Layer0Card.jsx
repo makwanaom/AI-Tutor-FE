@@ -1,4 +1,4 @@
-import "./layer0Card.css"
+import "./layer0Card.css";
 import { useNavigate } from 'react-router-dom';
 
 const Layer0Card = ({ index, levelName, levelContent, subject }) => {
