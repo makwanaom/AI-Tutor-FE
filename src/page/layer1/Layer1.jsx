@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
-import Layer1Card from '../../components/layer0Card/Layer1Crad';
+
+import { useEffect, useState } from 'react';
+import Layer1Card from '../../components/layer1Card/Layer1Card';
 
 const Layer1 = () => {
   const location = useLocation();

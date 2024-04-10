@@ -1,6 +1,6 @@
-import React from 'react';
+
 import { useNavigate } from 'react-router-dom';
-import "./layer0Card.css"
+import "./layer1Card.css"
 
 
 const Layer1Card = ({ index, chapter,level,subject }) => {
@@ -15,7 +15,7 @@ const Layer1Card = ({ index, chapter,level,subject }) => {
   };
 
   return (
-    <div key={index} className="layer0-card" onClick={() => handleClick(chapter,level,subject)}>
+    <div key={index} className="layer1-card" onClick={() => handleClick(chapter,level,subject)}>
       {chapter}
     </div>
   );
